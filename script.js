@@ -1,8 +1,21 @@
+const display = document.getElementById('display')
+let displayText = display.textContent
+let displayCalc = displayText.split(' ');
+console.log(displayCalc);
 
-let operate = function(num1, operator, num2) {
-    let numsArr = [num1, num2]
-    if (operator === '+') {
-        add(numsArr);
+let operate = function(calcArray) {
+    let numbers = '1234567890'
+    let newNums = []
+    for (let i = 0; i < calcArray.length; i++) {
+        let currChar = calcArray[i];
+        if (numbers.includes(currChar)) {
+            let typeChange = Number(currChar)
+            newNums.push(typeChange);
+        }
+    }
+    console.log(newNums)
+    if (calcArray.includes('+')) {
+        add(newNums);
     } 
     if (operator === '-') {
         subtract(numsArr);
@@ -60,7 +73,7 @@ let divide = function(nums) {
     console.log(sum);
 }
 
-operate(5, '+', 5);
+operate(displayCalc);
 operate(10, '-', 3);
 operate(5, '*', 5);
 operate(10, '/', 5);
