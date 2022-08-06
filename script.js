@@ -1,34 +1,35 @@
 const display = document.getElementById('display')
 let displayText = display.textContent
 let displayCalc = displayText.split(' ');
-console.log(displayCalc);
+console.log(displayCalc)
 
 let operate = function(calcArray) {
-    let numbers = '1234567890'
     let newNums = []
+    
     for (let i = 0; i < calcArray.length; i++) {
-        let currChar = calcArray[i];
-        if (numbers.includes(currChar)) {
-            let typeChange = Number(currChar)
-            newNums.push(typeChange);
+        let currChar = parseInt(calcArray[i]);
+        if (isNaN(currChar) === false) {
+            newNums.push(currChar);
         }
     }
     console.log(newNums)
+
     if (calcArray.includes('+')) {
         add(newNums);
     } 
-    if (operator === '-') {
-        subtract(numsArr);
+    if (calcArray.includes('-')) {
+        subtract(newNums);
     }
     
-    if (operator === '*') {
-        multiply(numsArr);
+    if (calcArray.includes('*')) {
+        multiply(newNums);
     }
     
-    if (operator === '/') {
-        divide(numsArr)
+    if (calcArray.includes('/')) {
+        divide(newNums)
     }
 }
+
 let add = function(nums) {
     let sum = 0;
 
@@ -74,6 +75,3 @@ let divide = function(nums) {
 }
 
 operate(displayCalc);
-operate(10, '-', 3);
-operate(5, '*', 5);
-operate(10, '/', 5);
