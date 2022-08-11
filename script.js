@@ -1,23 +1,25 @@
 const buttons = document.querySelectorAll('#btn');
 const display = document.getElementById('display');
 const answer = document.getElementById('answer');
+let displayText = display.textContent;
 
 buttons.forEach((button) => {
     let numbers = '0123456789';
     button.addEventListener('click', () => {
         if (numbers.includes(button.textContent)) {
             display.insertAdjacentText("beforeend", `${button.textContent}`);
-        } else {
+        } else if (!numbers.includes(button.textContent)){
             display.insertAdjacentText("beforeend", ` ${button.textContent} `);
         }
+        midCheck();
     });
 });
 
 document.getElementById('calculate').onclick = function() {
     let displayText = display.textContent;
     let displayCalc = displayText.split(' ');
-    operate(displayCalc);
-}
+    operate(displayCalc); 
+    }
 
 document.getElementById('clear').onclick = function() {
     answer.textContent = "";
@@ -58,7 +60,7 @@ let add = function(nums) {
         sum += currNum;
     }
 
-    answer.textContent = display.textContent;
+    answer.textContent = `${display.textContent} = ${sum}`;
     display.textContent = sum;
 }
 
@@ -70,7 +72,7 @@ let subtract = function(nums) {
         sum -= currNum;
     }
 
-    answer.textContent = display.textContent;
+    answer.textContent = `${display.textContent} = ${sum}`;
     display.textContent = sum;
 }
 
@@ -82,7 +84,7 @@ let multiply = function(nums) {
         sum *= currNum;
     }
 
-    answer.textContent = display.textContent;
+    answer.textContent = `${display.textContent} = ${sum}`;
     display.textContent = sum;
 }
 
@@ -94,6 +96,19 @@ let divide = function(nums) {
         sum /= currNum;
     }
 
-    answer.textContent = display.textContent;
+    answer.textContent = `${display.textContent} = ${sum}`;
     display.textContent = sum;
+}
+
+let midCheck = function () {
+    let displayText = display.textContent;
+    let displayCalc = displayText.split(' ');
+    console.log(displayCalc);
+    if (displayCalc.length > 3) {
+        let firstCalc = displayCalc.slice(0, 3);
+        let remainder = displayCalc.slice(3, 4);
+        operate(firstCalc); 
+        answer.textContent = `${firstCalc.join(' ')} = ${display.textContent}`;
+        display.insertAdjacentText("beforeend", ` ${remainder} `);
+    }
 }
