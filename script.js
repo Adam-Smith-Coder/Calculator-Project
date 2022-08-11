@@ -5,12 +5,15 @@ const disableBtn = document.querySelector('.disable');
 
 buttons.forEach((button) => {
     let numbers = '0123456789.';
+    let operator = '+-/*'
     button.addEventListener('click', () => {
         if (numbers.includes(button.textContent)) {
             display.insertAdjacentText("beforeend", `${button.textContent}`);
-        } else if (!numbers.includes(button.textContent)){
+        } else if (operator.includes(button.textContent)){
             display.insertAdjacentText("beforeend", ` ${button.textContent} `);
             disableBtn.disabled = false
+        } else if (button.textContent === 'Delete') {
+            removeLast();
         }
         midCheck();
     });
