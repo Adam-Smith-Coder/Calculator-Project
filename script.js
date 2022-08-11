@@ -16,18 +16,45 @@ buttons.forEach((button) => {
     });
 });
 
+window.addEventListener('keydown', function (e) {
+    let value = e.key;
+    let numbers = '0123456789.';
+    let operator = '+-/*'
+    if (numbers.includes(value)) {
+        display.insertAdjacentText("beforeend", `${value}`);
+    } else if (operator.includes(value)){
+        display.insertAdjacentText("beforeend", ` ${value} `);
+        disableBtn.disabled = false
+    }
+    midCheck();
+    if (value === '=') {
+        calculate();
+    }
+    if (value === 'Backspace'){
+        removeLast();
+    }
+});
+
 const disableButton = () => {
     disableBtn.disabled = true;
 }
-
 
 disableBtn.addEventListener('click', 
 disableButton);
 
 document.getElementById('calculate').onclick = function() {
+    calculate();
+}
+
+let calculate = function() {
     let displayText = display.textContent;
     let displayCalc = displayText.split(' ');
-    if (displayCalc[2] === '') {
+    let operators = '+-/*';
+    if (operators.includes(displayCalc[0])) {
+        alert `Error Incorrect syntax`;
+        answer.textContent = "";
+        display.textContent = "";
+    } else if (displayCalc[2] === '') {
         alert `Error unfinished calculation`
     } else {
         operate(displayCalc); 
@@ -123,15 +150,26 @@ let divide = function(nums) {
 let midCheck = function () {
     let displayText = display.textContent;
     let displayCalc = displayText.split(' ');
+    let operators = '+-/*';
     if (displayCalc.length > 3) {
-        let firstCalc = displayCalc.slice(0, 3);
+        if (operators.includes(displayCalc[0])) {
+            alert `Error Incorrect syntax`;
+            answer.textContent = "";
+            display.textContent = "";
+        } else {
+            let firstCalc = displayCalc.slice(0, 3);
         let remainder = displayCalc.slice(3, 4);
         operate(firstCalc); 
-        if (answer.textContent === "" && display.textContent === "") {
+            if (answer.textContent === "" && display.textContent === "") {
 
-        } else {
+            } else {
             answer.textContent = `${firstCalc.join(' ')} = ${display.textContent}`;
             display.insertAdjacentText("beforeend", ` ${remainder} `);
+            }
         }
     }
+}
+
+let removeLast = function() {
+    display.textContent = display.textContent.slice(0, -1);
 }
