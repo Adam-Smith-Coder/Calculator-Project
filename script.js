@@ -60,8 +60,8 @@ let add = function(nums) {
         sum += currNum;
     }
 
-    answer.textContent = `${display.textContent} = ${sum}`;
-    display.textContent = sum;
+    answer.textContent = `${display.textContent} = ${Number(sum.toFixed(2))}`;
+    display.textContent = Number(sum.toFixed(2));
 }
 
 let subtract = function(nums) {
@@ -72,8 +72,8 @@ let subtract = function(nums) {
         sum -= currNum;
     }
 
-    answer.textContent = `${display.textContent} = ${sum}`;
-    display.textContent = sum;
+    answer.textContent = `${display.textContent} = ${Number(sum.toFixed(2))}`;
+    display.textContent = Number(sum.toFixed(2));
 }
 
 let multiply = function(nums) {
@@ -84,8 +84,8 @@ let multiply = function(nums) {
         sum *= currNum;
     }
 
-    answer.textContent = `${display.textContent} = ${sum}`;
-    display.textContent = sum;
+    answer.textContent = `${display.textContent} = ${Number(sum.toFixed(2))}`;
+    display.textContent = Number(sum.toFixed(2));
 }
 
 let divide = function(nums) {
@@ -96,8 +96,8 @@ let divide = function(nums) {
         sum /= currNum;
     }
 
-    answer.textContent = `${display.textContent} = ${sum}`;
-    display.textContent = sum;
+    answer.textContent = `${display.textContent} = ${Number(sum.toFixed(2))}`;
+    display.textContent = Number(sum.toFixed(2));
 }
 
 let midCheck = function () {
