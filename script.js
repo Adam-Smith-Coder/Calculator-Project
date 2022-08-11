@@ -30,7 +30,7 @@ window.addEventListener('keydown', function (e) {
         disableBtn.disabled = false
     }
     midCheck();
-    if (value === '=') {
+    if (value === '=' || value === 'Enter') {
         calculate();
     }
     if (value === 'Backspace'){
@@ -157,7 +157,6 @@ let midCheck = function () {
         return el !== '';
     });
     let operators = '+-/*';
-    console.log(displayCalc);
     if (displayCalc.length === 4) {
         if (operators.includes(displayCalc[0]) || operators.includes(displayCalc[2])) {
             alert `Error Incorrect syntax`;
@@ -165,7 +164,7 @@ let midCheck = function () {
             display.textContent = "";
         } else {
             let firstCalc = displayCalc.slice(0, 3);
-        let remainder = displayCalc.slice(3, 4);
+            let remainder = displayCalc.slice(3, 4);
         operate(firstCalc); 
             if (answer.textContent === "" && display.textContent === "") {
 
