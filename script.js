@@ -4,7 +4,7 @@ const answer = document.getElementById('answer');
 let displayText = display.textContent;
 
 buttons.forEach((button) => {
-    let numbers = '0123456789';
+    let numbers = '0123456789.';
     button.addEventListener('click', () => {
         if (numbers.includes(button.textContent)) {
             display.insertAdjacentText("beforeend", `${button.textContent}`);
@@ -19,7 +19,7 @@ document.getElementById('calculate').onclick = function() {
     let displayText = display.textContent;
     let displayCalc = displayText.split(' ');
     operate(displayCalc); 
-    }
+}
 
 document.getElementById('clear').onclick = function() {
     answer.textContent = "";
@@ -30,7 +30,7 @@ let operate = function(calcArray) {
     let newNums = []
     
     for (let i = 0; i < calcArray.length; i++) {
-        let currChar = parseInt(calcArray[i]);
+        let currChar = parseFloat(calcArray[i]);
         if (isNaN(currChar) === false) {
             newNums.push(currChar);
         }
@@ -103,7 +103,6 @@ let divide = function(nums) {
 let midCheck = function () {
     let displayText = display.textContent;
     let displayCalc = displayText.split(' ');
-    console.log(displayCalc);
     if (displayCalc.length > 3) {
         let firstCalc = displayCalc.slice(0, 3);
         let remainder = displayCalc.slice(3, 4);
