@@ -153,9 +153,13 @@ let divide = function(nums) {
 let midCheck = function () {
     let displayText = display.textContent;
     let displayCalc = displayText.split(' ');
+    displayCalc = displayCalc.filter(function (el) {
+        return el !== '';
+    });
     let operators = '+-/*';
-    if (displayCalc.length > 3) {
-        if (operators.includes(displayCalc[0])) {
+    console.log(displayCalc);
+    if (displayCalc.length === 4) {
+        if (operators.includes(displayCalc[0]) || operators.includes(displayCalc[2])) {
             alert `Error Incorrect syntax`;
             answer.textContent = "";
             display.textContent = "";
